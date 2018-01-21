@@ -1,0 +1,40 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+
+	<table class="table table-striped table-hover">
+		{% if object_list %}
+		<thead>
+			<td>Id</td>
+			<td>Nombre</td>
+			<td>Fecha</td>
+			<td>Acción</td>
+		</thead>
+		<tbody>
+			{% for menu in object_list %}
+			<tr>
+				<td>{{ menu.id }}</td>
+				<td>{{ menu.name }}</td>
+				<td>{{ menu.date_menu }}</td>
+				<td> 
+					<a  class="btn btn-primary btn-xs" href=" {% url 'menu-update' menu.id  %} ">Editar</a> 
+					<a  class="btn btn-danger btn-xs" href=" {% url 'menu-delete' menu.id  %} ">Borrar</a> 
+				</td>
+			</tr>
+			{% endfor %}
+			{% else %}
+				<h2>No hay registro disponibles</h2>
+			{% endif %}
+		</tbody>
+	</table>
+	
+	<div class="row">
+		<div class="col-md-offset-0	col-md-12"">
+			<a  class="btn btn-primary btn-xs" href=" {% url 'menu-add'  %} ">Nuevo</a> 
+		</div>
+	</div>
+{% endblock %}

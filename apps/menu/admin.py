@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ..menu.models import Menu, Food, AdditionalFood
+from .models import Menu, Food, AdditionalFood
 
 # Register your models here.
 

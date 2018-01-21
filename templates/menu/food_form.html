@@ -1,0 +1,31 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+	<form action="" method="post">{% csrf_token %}
+	<div>
+		{{ form.name.errors }}
+		<label for="id_name">{{ form.name.label }}</label>
+		{{ form.name }}
+	</div>
+	<div>
+		{{ form.description.errors }}
+		<label for="id_descripcion">{{ form.description.label }}</label>
+		{{ form.description }}
+	</div>
+<!--	<div>
+		{{ form.description.errors }}
+		<label for="id_additional">{{ form.additional_id.label }}</label>
+		{{ form.additional_id }}
+		<a  class="btn btn-primary btn-xs" href=" {% url 'additional-add'  %} ">+</a> 
+	</div>
+-->	
+	<input class="btn btn-primary btn-xs" type="submit" value="Aceptar">
+	<a  class="btn btn-primary btn-xs" href=" {% url 'food-list'  %} ">Atras</a> 
+	</form>
+{% endblock %}
+
+

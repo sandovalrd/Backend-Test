@@ -1,0 +1,24 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+	<form action="" method="post">{% csrf_token %}
+	<div>
+		{{ form.description.errors }}
+		<label for="id_descripcion">{{ form.description.label }}</label>
+		{{ form.description }}
+	</div>
+	<div>
+		{{ form.available.errors }}
+		<label for="id_available">{{ form.available.label }}</label>
+		{{ form.available }}
+	</div>
+	<input class="btn btn-primary btn-xs" type="submit" value="Aceptar">
+	<a  class="btn btn-primary btn-xs" href=" {% url 'additional-list'  %} ">Atras</a> 
+	</form>
+{% endblock %}
+
+
