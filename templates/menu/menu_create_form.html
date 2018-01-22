@@ -1,0 +1,29 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+	{% if not menu_list %}
+		<form action="" method="post">{% csrf_token %}
+		<div>
+			{{ form.name.errors }}
+			<label for="id_name">{{ form.name.label }}</label>
+			{{ form.name }}
+		</div>
+		<div>
+			{{ form.foods.errors }}
+			<label for="id_foods">{{ form.foods.label }}</label>
+			<a  class="btn btn-primary btn-xs" href=" {% url 'food-add'  %} ">+</a> 
+			{{ form.foods }}
+
+		</div>
+
+		<input class="btn btn-primary btn-xs" type="submit" value="Aceptar">
+	{% else %}
+		<p>Ya existe un menú definido para hoy!</p>
+	{% endif %}
+	<a  class="btn btn-primary btn-xs" href=" {% url 'menu-list'  %} ">Atras</a> 
+	</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+
+	<table class="table table-striped table-hover">
+		{% if object_list %}
+		<thead>
+			<td>Comida</td>
+			<td>Adicional</td>
+			<td>Observaciones</td>
+			<td>fecha</td>
+		</thead>
+		<tbody>
+			{% for lunch in object_list %}
+			<tr>
+				<td>{{ lunch.food_id.description }}</td>
+				<td>{{ lunch.additional_id.description }}</td>
+				<td>{{ lunch.specification }}</td>
+				<td>{{ lunch.date_lunch }}</td>
+			</tr>
+			{% endfor %}
+			{% else %}
+				<h2>No hay registro disponibles</h2>
+			{% endif %}
+		</tbody>
+	</table>
+	<p>{{ date.hour }}</p><p>prueba</p>
+	<div class="row">
+		<div class="col-md-offset-0	col-md-12"">
+			<a  class="btn btn-primary btn-xs" href=" {% url 'lunch-add'  %} ">Cambiar</a> 
+		</div>
+	</div>
+{% endblock %}

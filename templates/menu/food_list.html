@@ -11,7 +11,6 @@
 			<td>Id</td>
 			<td>Nombre</td>
 			<td>Descripción</td>
-		<!--	<td>Adicional</td> -->
 			<td>Acción</td>
 		</thead>
 		<tbody>
@@ -20,10 +19,9 @@
 				<td>{{ food.id }}</td>
 				<td>{{ food.name }}</td>
 				<td>{{ food.description }}</td>
-			<!--	<td>{{ food.additional_id.description }}</td> -->
 				<td> 
 					<a  class="btn btn-primary btn-xs" href=" {% url 'food-update' food.id  %} ">Editar</a> 
-					<a  class="btn btn-danger btn-xs" href=" {% url 'food-delete' food.id  %} ">Borrar</a> 
+				<!--	<a  class="btn btn-danger btn-xs" href=" {% url 'food-delete' food.id  %} ">Borrar</a> -->
 				</td>
 			</tr>
 			{% endfor %}

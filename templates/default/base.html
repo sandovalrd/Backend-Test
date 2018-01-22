@@ -11,7 +11,7 @@
 
 		{% include 'default/navbar.html' %}
 
-		<div class="col-md-offset-2 col-md-8">
+		<div class="col-md-offset-1 col-md-10">
 
 			{% block content %}
 				<h4>Bloque Contenido</h4>
@@ -27,6 +27,10 @@
 
 	<script src="{% static 'plugins/jquery/js/jquery-3.2.1.js' %}" ></script>
 	<script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}" ></script>
-	
+	<script>
+		{% block javascript %}
+		
+		{% endblock %}					
+	</script>	
 </body>
 </html>

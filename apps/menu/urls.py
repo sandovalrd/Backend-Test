@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import MenuCreate, MenuUpdate, MenuList, MenuDelete, FoodCreate, FoodUpdate, FoodList, FoodDelete, AdditionalCreate, AdditionalUpdate, AdditionalDelete, AdditionalList
+from .views import menu_create, MenuUpdate, MenuList, MenuDelete, FoodCreate, FoodUpdate, FoodList, FoodDelete, AdditionalCreate, AdditionalUpdate, AdditionalDelete, AdditionalList
 
 urlpatterns = [
 
     # url for Menu
 
-    path('add/', MenuCreate.as_view(), name='menu-add'),
+    path('add/', menu_create, name='menu-add'),
     path('menu/<int:pk>/', MenuUpdate.as_view(), name='menu-update'),
     path('menu/<int:pk>/delete/', MenuDelete.as_view(), name='menu-delete'),
     path('list/', MenuList.as_view(), name='menu-list'),

@@ -1,0 +1,84 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+	{% if hour %}
+		{% if food_list %}
+			<form action="" method="post">{% csrf_token %}
+			
+			<div>
+				{{ form.employee_id }}
+			</div>
+			<div>
+				{{ form.menu_id.errors }}
+				<label for="id_menu">{{ form.menu_id.label }}</label>
+				{{ form.menu_id }}
+				{% if food_list %}
+					{% for menu in food_list %}
+						{{ menu.name }}
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div>
+				{{ form.food_id.errors }}
+				<label for="id_food">{{ form.food_id.label }}</label>
+				<select name="food_id" required id="id_food_id">
+		  			<option value="" selected>---------</option>
+		  			{% if food_list %}
+		  				{% for menu in food_list %}
+		  					{% for food in menu.foods.all %}
+								<option value="{{ food.id }}">{{ food.description }}</option>
+							{% endfor %}
+						{% endfor %}
+					{% endif %}
+				</select>		
+			</div>
+			<div>
+				{{ form.additional_food.errors }}
+				<label for="id_dditional_food">{{ form.additional_food.label }}</label>
+				{{ form.additional_food }}
+			</div>
+			<div id="additionalfood" style="display: none" >
+				{{ form.additional_id.errors }}
+				<label for="id_additional">{{ form.additional_id.label }}</label>
+				<select name="additional_id" id="id_additional_id">
+		  			<option value="" selected>---------</option>
+		  			{% if additional_list %}
+		  				{% for additional in additional_list %}
+							<option value="{{ additional.id }}" >{{ additional.description }}</option>
+						{% endfor %}
+					{% endif %}
+				</select>
+			</div>
+			<div>
+				{{ form.specification.errors }}
+				<label for="id_specification">{{ form.specification.label }}</label>
+				{{ form.specification}}
+			</div>
+			<input class="btn btn-primary btn-xs" type="submit" value="Aceptar">
+			<a  class="btn btn-primary btn-xs" href=" {% url 'lunch-list'  %} ">Atras</a> 
+			</form>
+		{% else %}
+			<p>No hay un menú definido!</p>
+		{% endif %}
+	{% else %}
+		<p>No hay tiempo para solicitar el menú, hasta las 11:00 am</p>
+	{% endif %}
+{% endblock %}
+{% block javascript %}
+	$(document).ready(function(){
+	    $("#id_additional_food").click(function(){
+	    	if ($('#id_additional_food').prop('checked')){
+				$("#additionalfood").css("display", "block");
+				$("#id_additional_id").prop('required',true);
+			}else{
+				$("#additionalfood").css("display", "none");
+				$("#id_additional_id").prop('required',false);
+			}
+	    });
+	});
+{% endblock %}
+
