@@ -8,7 +8,6 @@
 	{% if object_list %}
 	<table class="table table-striped table-hover">
 		<thead>
-			<td>Id</td>
 			<td>Nombre</td>
 			<td>Descripción</td>
 			<td>Acción</td>
@@ -16,7 +15,6 @@
 		<tbody>
 			{% for food in object_list %}
 			<tr>
-				<td>{{ food.id }}</td>
 				<td>{{ food.name }}</td>
 				<td>{{ food.description }}</td>
 				<td> 

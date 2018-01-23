@@ -1,0 +1,71 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<div class="row" >
+	<div class="col-md-offset-2 col-md-8" style="top:50px">
+		<div class="panel panel-default">
+				
+			<div class="panel-heading">
+				<h4>
+					Registro
+				</h4>
+			</div>
+			<div class="panel-body">
+				<form action="" method="post">{% csrf_token %}
+					<div class="row">
+						<div class="form-group col-md-9">
+							{{ form.username.errors }}
+							<label>{{ form.username.label }}</label>
+							{{ form.username }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-9">
+							{{ form.first_name.errors }}
+							<label>{{ form.first_name.label }}</label>
+							{{ form.first_name }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-9">
+							{{ form.last_name.errors }}
+							<label>{{ form.last_name.label }}</label>
+							{{ form.last_name }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-9">
+							{{ form.email.errors }}
+							<label>{{ form.email.label }}</label>
+							{{ form.email }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-9">
+							{{ form.password1.errors }}
+							<label>Contraseña: </label>
+							{{ form.password1 }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-10">
+							{{ form.password2.errors }}
+							<label>Confirmar contraseña: </label>
+							{{ form.password2 }}
+						</div>
+					</div>
+					<input class="btn btn-primary btn-xs" type="submit" value="Aceptar">
+					<a class="btn btn-primary btn-xs" href="{% url 'login' %}">Login</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

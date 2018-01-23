@@ -24,14 +24,9 @@
 			</tr>
 			{% endfor %}
 			{% else %}
-				<h2>No hay registro disponibles</h2>
+				<h3>No hay registros disponibles</h3>
 			{% endif %}
 		</tbody>
 	</table>
-	<p>{{ date.hour }}</p><p>prueba</p>
-	<div class="row">
-		<div class="col-md-offset-0	col-md-12"">
-			<a  class="btn btn-primary btn-xs" href=" {% url 'lunch-add'  %} ">Cambiar</a> 
-		</div>
-	</div>
+
 {% endblock %}

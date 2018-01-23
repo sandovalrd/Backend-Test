@@ -9,7 +9,10 @@
 <body>
 	<div class="container">
 
-		{% include 'default/navbar.html' %}
+		{% block navbar %}
+			{% include 'default/navbar.html' %}
+		{% endblock %}
+		
 
 		<div class="col-md-offset-1 col-md-10">
 

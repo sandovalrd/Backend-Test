@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.http import HttpResponse
 from .forms import LunchForm
 from .models import Lunch, Menu, AdditionalFood
+from django.contrib.auth.decorators import login_required
 
 import datetime, time
 
+@login_required()
 def lunch_create(request):
 		
 	if request.method == 'POST': 
@@ -41,6 +42,7 @@ def lunch_create(request):
 		}
 	return render(request, 'lunch/lunch_form.html', context)
 
+@login_required()
 def lunch_list(request):
 	object_list = Lunch.objects.filter(employee_id_id=request.user.id).order_by('-id')[:1]
 	return render(request, 'lunch/lunch_list.html', {'object_list':object_list})

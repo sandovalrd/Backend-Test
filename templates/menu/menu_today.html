@@ -1,0 +1,48 @@
+{% extends 'default/base.html' %}
+
+{% block title %}
+	Titulo
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row" >
+	<div class="col-md-offset-2 col-md-8" style="top:50px">
+		<div class="panel panel-default">
+				
+			<div class="panel-heading">
+				<h5>
+					<p class="text-center">Menu del día</p> 
+				</h5>
+			</div>
+			<div class="panel-body">
+				{% if menu_list %}
+					{% for menu in menu_list %}
+						<p>Nombre del Menú: <strong>{{ menu.name }}</strong> </p>
+						<ul>
+							{% for food in menu.foods.all %}
+								<li>
+								<strong>{{ food.name }} </strong> : {{ food.description }}
+								</li>
+							{% endfor %}
+						</ul>
+					{% endfor %}
+					{% if additional_list %}
+					<p>Platos adicionales:</p>
+						<ul>
+						{% for addicional in additional_list %}
+							<li> {{ addicional.description }} </li>
+						{% endfor %}
+						</ul>
+					{% else %}
+						<p>No hay comida adicional para hoy!</p>
+					{% endif %}
+				{% else %}
+					<p>Todavía no hay un menú definido para hoy!</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
