@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+	<p>Saludos,</p>
+	<p>Se anexa link para visualizar el menú de hoy!</p>
+	{% if pk %}
+    	<a href="http://localhost:8000/menu/{{ pk }}">https://nora.cornershop.io/menu/{{ pk }}</a>
+	{% endif %}
+
+</body>
+</html>

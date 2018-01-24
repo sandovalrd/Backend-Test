@@ -8,12 +8,16 @@ from django.contrib.auth import login
 # Create your views here.
 
 class RegisterUsers(CreateView):
-	"""docstring for RegisterUsers"""
+	"""docstring for RegisterUsers, 
+	View responsible for registering new users"""
 	template_name = "users/register.html"
 	form_class = RegisterForm
 	success_url = reverse_lazy('menu-list')
 
 class Login(FormView):
+	"""docstring for login, View commissioned for the authentication 
+	of users"""
+
 	template_name = 'users/login.html'
 	form_class = AuthenticationForm
 	success_url = reverse_lazy('menu-today')
