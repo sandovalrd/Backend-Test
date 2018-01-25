@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import menu_create, MenuUpdate, MenuList, FoodCreate, FoodUpdate, FoodList, AdditionalCreate, AdditionalUpdate, AdditionalList, menu_today, send_mail, MunuDetail
+from .views import menu_create, MenuUpdate, MenuList, FoodCreate, FoodUpdate, FoodList, AdditionalCreate, AdditionalUpdate, AdditionalList, menu_today, send_mail, MunuDetail, slack_message
 from django.contrib.auth.decorators import permission_required
 urlpatterns = [
 
@@ -11,6 +11,7 @@ urlpatterns = [
     path('today/', menu_today, name='menu-today'),
     path('<uuid:pk>', MunuDetail.as_view()),
     path('email/', send_mail, name='email'),
+    path('slack/', slack_message, name='slack-message'),
    
     # url for food
 

@@ -18,16 +18,14 @@
 			</div>
 			<div class="panel-body">
 				{% if menu_list %}
-					{% for menu in menu_list %}
-						<p>Nombre del Menú: <strong>{{ menu.name }}</strong> </p>
+						<p>Nombre del Menú: <strong>{{ menu_list.name }}</strong> </p>
 						<ul>
-							{% for food in menu.foods.all %}
+							{% for food in menu_list.foods.all %}
 								<li>
 								<strong>{{ food.name }} </strong> : {{ food.description }}
 								</li>
 							{% endfor %}
 						</ul>
-					{% endfor %}
 					{% if additional_list %}
 					<p>Platos adicionales:</p>
 						<ul>

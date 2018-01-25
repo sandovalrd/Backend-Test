@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
 # forms
 from .forms import MenuForm, FoodForm, AdditionalForm
 # models
@@ -15,6 +16,8 @@ from django.views.generic.detail import DetailView
 # email
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+# Api Slack
+from slackclient import SlackClient
 # time
 import datetime
 
@@ -65,7 +68,7 @@ def menu_today(request):
 	This view is responsible for showing the daily menu"""
 
 	today = datetime.datetime.now()
-	menu_list = Menu.objects.filter(date_menu=today)
+	menu_list = Menu.objects.get(date_menu=today)
 	additional_list = AdditionalFood.objects.filter(available=True)
 	context = {
 		'additional_list': additional_list, 
@@ -166,9 +169,45 @@ def send_mail(request):
 		)
 
 		email = EmailMultiAlternatives(subject, text_content, to=to)
-		email.attach_alternative(html_content, "text/html")
-		email.send()
-
-		return redirect('menu-today')
+		email.attach_alternative(html_content, "text/html")	
+		message = 'Se envio el email!'	
+		try:
+			email.send()
+		except:
+			message = 'Error enviando! verifique autenticación del correo en settings.py'
 	else:
-		return render(request, 'menu/menu_today.html')
+		message = 'No hay un menú definido para hoy!'
+
+	return render(request, 'menu/menu_email.html', {'message': message})
+
+@login_required()
+@permission_required('menu.add_menu')
+def slack_message(request):
+	"""docstring for slack_message, Send a Slack reminder with 
+	today's menu to the #almuerzo channel """
+
+	channel = '#almuerzo'
+	message = "Se envio el mensaje al canal " + channel
+	if settings.SLACK_TOKEN:
+		sc = SlackClient(settings.SLACK_TOKEN)
+		menu_today = datetime.datetime.now()
+		try:
+			# verify that there is not a menu for today
+			menu_list = Menu.objects.get(date_menu=menu_today)
+		except DoesNotExist:
+			pass
+		if menu_list:
+			text = 'Menu ' + menu_list.name + ': '
+			for food in menu_list.foods.all():
+				text = text + ' ' + food.description + '.'
+			sc.api_call(
+				"chat.postMessage",
+				channel=channel,
+				text=text
+			)
+		else:
+			message = "No hay menu definido para hoy!"
+	else: 
+		message = "Error Token no definido, verifique settings.py!"
+
+	return render(request, 'menu/slack_message.html', {'message': message})

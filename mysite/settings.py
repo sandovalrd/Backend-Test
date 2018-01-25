@@ -133,8 +133,12 @@ LOGIN_REDIRECT_URL = 'menu-today'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
 
+# settings Email! Define email username and password
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'sandovalrd@gmail.com'
+EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
+
+# setting Slack! Requirements: install SlackClient
+SLACK_TOKEN = ''

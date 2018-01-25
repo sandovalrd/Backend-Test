@@ -8,5 +8,4 @@ urlpatterns = [
 
     path('add/', lunch_create, name='lunch-add'),
 	path('list/', lunch_list, name='lunch-list'),
-
 ]

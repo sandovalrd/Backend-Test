@@ -10,6 +10,7 @@ from .models import Lunch, Menu, AdditionalFood
 # time
 import datetime, time
 
+
 @login_required()
 def lunch_create(request):
 	"""docstring for lunch_create, This view is responsible for 
